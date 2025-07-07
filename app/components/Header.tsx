@@ -23,11 +23,16 @@ export default function Header() {
     const handleScroll = () => {
       const scrollPosition = window.scrollY
       setIsScrolled(scrollPosition > 50)
+      
+      // Close mobile menu on scroll
+      if (isMenuOpen) {
+        setIsMenuOpen(false)
+      }
     }
 
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+  }, [isMenuOpen])
 
   const toggleLanguage = () => {
     setLanguage(language === "RO" ? "EN" : "RO")
@@ -116,60 +121,66 @@ export default function Header() {
           </button>
         </div>
 
-        {/* Mobile Navigation - Full Screen Overlay */}
+        {/* Mobile Navigation - Partial Upper Screen Overlay */}
         {isMenuOpen && (
-          <div className="lg:hidden fixed inset-0 z-50 bg-white/95 backdrop-blur-md">
-            {/* Background with slight opacity to show hero image */}
+          <>
+            {/* Background overlay for the full screen to capture clicks */}
             <div 
-              className="absolute inset-0 bg-gradient-to-b from-[#faf2e1]/90 to-white/95"
+              className="lg:hidden fixed inset-0 z-40 bg-black/20 backdrop-blur-sm"
               onClick={() => setIsMenuOpen(false)}
             />
             
-            {/* Menu Content */}
-            <div className="relative z-10 flex flex-col h-full justify-center px-8">
-              {/* Navigation Links - Text Based for Mobile */}
-              <div className="space-y-4 mb-12">
-                {navigation.map((item, index) => (
+            {/* Menu Panel - Upper portion only */}
+            <div className="lg:hidden fixed top-0 left-0 right-0 z-50 h-[70vh] bg-white/95 backdrop-blur-md shadow-2xl">
+              {/* Background gradient */}
+              <div className="absolute inset-0 bg-gradient-to-b from-[#faf2e1]/90 to-white/95 rounded-b-3xl" />
+              
+              {/* Menu Content */}
+              <div className="relative z-10 flex flex-col h-full justify-center px-8 py-8">
+                {/* Navigation Links - Compact for upper screen */}
+                <div className="space-y-3 mb-8">
+                  {navigation.map((item, index) => (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className="flex items-center space-x-4 p-3 rounded-2xl transition-all duration-500 hover:scale-105 bg-white/80 hover:bg-white shadow-lg hover:shadow-xl animate-slide-in-left"
+                      style={{ animationDelay: `${index * 100}ms` }}
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      <span className="text-[#1e2a4a] text-xl">{item.icon}</span>
+                      <span className="font-bold text-lg text-[#1e2a4a]">{item.name}</span>
+                    </Link>
+                  ))}
+                </div>
+                
+                {/* Mobile CTA Buttons - Compact */}
+                <div className="space-y-3">
                   <Link
-                    key={item.href}
-                    href={item.href}
-                    className="flex items-center space-x-4 p-4 rounded-3xl transition-all duration-500 hover:scale-105 bg-white/80 hover:bg-white shadow-lg hover:shadow-xl animate-slide-in-left"
-                    style={{ animationDelay: `${index * 100}ms` }}
+                    href="/locations"
+                    className="w-full flex items-center justify-center space-x-3 py-3 px-6 rounded-2xl font-bold text-base transition-all duration-500 border-2 border-[#e85a4f] text-[#e85a4f] hover:text-white hover:bg-[#e85a4f] bg-white/80 hover:bg-[#e85a4f] shadow-lg hover:shadow-xl animate-slide-in-up"
+                    style={{ animationDelay: '500ms' }}
                     onClick={() => setIsMenuOpen(false)}
                   >
-                    <span className="text-[#1e2a4a] text-2xl">{item.icon}</span>
-                    <span className="font-bold text-xl text-[#1e2a4a]">{item.name}</span>
+                    <MapPin className="w-5 h-5" />
+                    <span>{t("header.findLocker")}</span>
                   </Link>
-                ))}
-              </div>
-              
-              {/* Mobile CTA Buttons */}
-              <div className="space-y-4">
-                <Link
-                  href="/locations"
-                  className="w-full flex items-center justify-center space-x-3 py-4 px-6 rounded-3xl font-bold text-lg transition-all duration-500 border-3 border-[#e85a4f] text-[#e85a4f] hover:text-white hover:bg-[#e85a4f] bg-white/80 hover:bg-[#e85a4f] shadow-lg hover:shadow-xl animate-slide-in-up"
-                  style={{ animationDelay: '500ms' }}
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  <MapPin className="w-6 h-6" />
-                  <span>{t("header.findLocker")}</span>
-                </Link>
-                <button
-                  className="w-full flex items-center justify-center space-x-3 py-4 px-6 rounded-3xl font-bold text-lg transition-all duration-500 text-white bg-[#e85a4f] hover:bg-[#d4472f] shadow-lg hover:shadow-xl animate-slide-in-up"
-                  style={{ animationDelay: '600ms' }}
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  <Download className="w-6 h-6" />
-                  <span>{t("header.downloadApp")}</span>
-                </button>
-              </div>
+                  <button
+                    className="w-full flex items-center justify-center space-x-3 py-3 px-6 rounded-2xl font-bold text-base transition-all duration-500 text-white bg-[#e85a4f] hover:bg-[#d4472f] shadow-lg hover:shadow-xl animate-slide-in-up"
+                    style={{ animationDelay: '600ms' }}
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    <Download className="w-5 h-5" />
+                    <span>{t("header.downloadApp")}</span>
+                  </button>
+                </div>
 
-              {/* Close hint */}
-              <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-center">
-                <p className="text-[#1e2a4a]/60 text-sm animate-pulse">Tap anywhere to close</p>
+                {/* Close hint */}
+                <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-center">
+                  <p className="text-[#1e2a4a]/60 text-sm animate-pulse">Scroll or tap to close</p>
+                </div>
               </div>
             </div>
-          </div>
+          </>
         )}
       </nav>
 
