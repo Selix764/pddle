@@ -19,6 +19,7 @@ import Link from "next/link"
 import { useLanguage } from "../contexts/LanguageContext"
 import ScrollAnimatedSection from "../components/ScrollAnimatedSection"
 import StaggeredScrollAnimation from "../components/StaggeredScrollAnimation"
+import StatsCard from "../components/StatsCard"
 
 export default function LocationsPage() {
   const { t } = useLanguage()
@@ -193,6 +194,13 @@ export default function LocationsPage() {
           <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center animate-pulse">
             <div className="w-1 h-3 bg-white/50 rounded-full mt-2 animate-bounce animation-delay-500"></div>
           </div>
+        </div>
+      </section>
+
+      {/* Stats Dashboard */}
+      <section className="section-padding bg-white">
+        <div className="container-custom">
+          <StatsCard />
         </div>
       </section>
 

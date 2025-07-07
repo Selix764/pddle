@@ -8,115 +8,103 @@ import ScrollAnimatedSection from "../components/ScrollAnimatedSection"
 import StaggeredScrollAnimation from "../components/StaggeredScrollAnimation"
 
 export default function EventsPage() {
-  const { t } = useLanguage()
+  const { language, t } = useLanguage()
 
   const events = [
     {
       id: 1,
-      title: "Sunrise SUP Adventure",
-      description:
-        "Experience the magic of paddleboarding at sunrise with our expert guides. Perfect for beginners and experienced paddlers alike.",
-      image: "/placeholder.svg?height=300&width=400&text=Sunrise+SUP+Adventure",
+      title: "Sunrise SUP Session",
+      description: "Start your day with a peaceful paddle as the sun rises over the water.",
       date: "2024-02-15",
-      time: "06:00 - 09:00",
-      location: "Lake Tahoe Marina",
-      price: "$65",
+      time: "06:00 AM",
+      location: "Lake Herastrau",
+      category: "Wellness",
       difficulty: "Beginner",
-      maxParticipants: 12,
+      price: "150 RON",
       currentParticipants: 8,
-      rating: 4.9,
+      maxParticipants: 12,
+      rating: 4.8,
       reviews: 24,
-      category: "Adventure",
       featured: true,
     },
     {
       id: 2,
-      title: "SUP Yoga Session",
-      description:
-        "Find your balance on water with our peaceful SUP yoga classes. Connect with nature while strengthening your core.",
-      image: "/placeholder.svg?height=300&width=400&text=SUP+Yoga+Session",
-      date: "2024-02-16",
-      time: "08:00 - 10:00",
-      location: "Mission Bay",
-      price: "$45",
-      difficulty: "All Levels",
-      maxParticipants: 8,
-      currentParticipants: 6,
-      rating: 4.8,
-      reviews: 18,
+      title: "SUP Yoga Workshop",
+      description: "Combine the tranquility of yoga with the challenge of paddleboarding.",
+      date: "2024-02-20",
+      time: "08:00 AM",
+      location: "Snagov Lake",
       category: "Wellness",
-      featured: false,
+      difficulty: "Intermediate",
+      price: "200 RON",
+      currentParticipants: 6,
+      maxParticipants: 10,
+      rating: 4.9,
+      reviews: 18,
+      featured: true,
     },
     {
       id: 3,
-      title: "Full Moon Night Paddle",
-      description:
-        "Paddle under the stars in this magical nighttime SUP experience. LED boards and safety equipment provided.",
-      image: "/placeholder.svg?height=300&width=400&text=Full+Moon+Night+Paddle",
-      date: "2024-02-20",
-      time: "19:00 - 21:30",
-      location: "Santa Monica Pier",
-      price: "$85",
-      difficulty: "Intermediate",
-      maxParticipants: 10,
-      currentParticipants: 3,
-      rating: 5.0,
-      reviews: 12,
+      title: "Night SUP Adventure",
+      description: "Experience the magic of paddleboarding under the stars with LED lighting.",
+      date: "2024-02-25",
+      time: "07:00 PM",
+      location: "Baneasa Lake",
       category: "Adventure",
+      difficulty: "Intermediate",
+      price: "180 RON",
+      currentParticipants: 5,
+      maxParticipants: 8,
+      rating: 4.7,
+      reviews: 31,
       featured: true,
     },
     {
       id: 4,
       title: "Family SUP Day",
-      description:
-        "Perfect introduction to SUP for families. Kid-friendly boards and shallow water location ensure everyone has fun safely.",
-      image: "/placeholder.svg?height=300&width=400&text=Family+SUP+Day",
-      date: "2024-02-18",
-      time: "10:00 - 13:00",
-      location: "Calm Bay Marina",
-      price: "$35",
-      difficulty: "Beginner",
-      maxParticipants: 16,
-      currentParticipants: 12,
-      rating: 4.7,
-      reviews: 31,
+      description: "Perfect introduction to SUP for families with children.",
+      date: "2024-03-02",
+      time: "10:00 AM",
+      location: "Tineretului Park Lake",
       category: "Family",
+      difficulty: "All Levels",
+      price: "120 RON",
+      currentParticipants: 12,
+      maxParticipants: 20,
+      rating: 4.6,
+      reviews: 42,
       featured: false,
     },
     {
       id: 5,
       title: "SUP Racing Workshop",
-      description:
-        "Learn racing techniques from professional SUP athletes. Improve your speed, technique, and competitive edge.",
-      image: "/placeholder.svg?height=300&width=400&text=SUP+Racing+Workshop",
-      date: "2024-02-22",
-      time: "14:00 - 17:00",
-      location: "Golden Gate Marina",
-      price: "$95",
-      difficulty: "Advanced",
-      maxParticipants: 6,
-      currentParticipants: 4,
-      rating: 4.9,
-      reviews: 8,
+      description: "Learn racing techniques and improve your speed on the water.",
+      date: "2024-03-05",
+      time: "09:00 AM",
+      location: "Lake Herastrau",
       category: "Training",
+      difficulty: "Advanced",
+      price: "250 RON",
+      currentParticipants: 4,
+      maxParticipants: 8,
+      rating: 4.8,
+      reviews: 16,
       featured: false,
     },
     {
       id: 6,
       title: "Wildlife SUP Tour",
-      description:
-        "Explore marine wildlife while paddleboarding. Guided tour with marine biologist and underwater viewing opportunities.",
-      image: "/placeholder.svg?height=300&width=400&text=Wildlife+SUP+Tour",
-      date: "2024-02-25",
-      time: "09:00 - 12:00",
-      location: "Monterey Bay",
-      price: "$75",
-      difficulty: "Intermediate",
-      maxParticipants: 8,
-      currentParticipants: 5,
-      rating: 4.8,
-      reviews: 15,
+      description: "Explore local wildlife while paddling through scenic waterways.",
+      date: "2024-03-10",
+      time: "07:30 AM",
+      location: "Comana Natural Park",
       category: "Nature",
+      difficulty: "Beginner",
+      price: "170 RON",
+      currentParticipants: 7,
+      maxParticipants: 15,
+      rating: 4.9,
+      reviews: 28,
       featured: true,
     },
   ]
@@ -125,14 +113,14 @@ export default function EventsPage() {
   const difficulties = ["All Levels", "Beginner", "Intermediate", "Advanced"]
 
   return (
-    <div className="min-h-screen bg-[#faf2e1]">
-      {/* Hero Section */}
+    <>
+      {/* Hero Section - Full Screen */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden -mt-20 pt-20">
         <div className="absolute inset-0 z-0">
           <div
             className="w-full h-full bg-cover bg-center bg-no-repeat animate-ken-burns"
             style={{
-              backgroundImage: "url('/placeholder.svg?height=1080&width=1920&text=SUP+Events+Hero')",
+              backgroundImage: "url('/images/events-hero.jpg')",
             }}
           />
           <div className="absolute inset-0 bg-black/40"></div>
@@ -174,41 +162,47 @@ export default function EventsPage() {
         </div>
       </section>
 
-      {/* Events Content */}
-      <div className="container-custom py-12 scroll-mt-24" id="events">
-        {/* Filters */}
-        <ScrollAnimatedSection animation="slideUp" className="bg-white rounded-2xl shadow-lg p-6 mb-12">
-          <div className="flex items-center mb-4">
-            <Filter className="w-5 h-5 text-[#E8563D] mr-2 animate-float" />
-            <h3 className="text-lg font-semibold text-[#111C2F]">Filter Events</h3>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-            <select className="border border-[#FDDAC0] rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#E8563D] focus:border-[#E8563D] bg-[#faf2e1] transition-all duration-300 input-consistent">
-              <option>All Categories</option>
-              {categories.slice(1).map((category) => (
-                <option key={category}>{category}</option>
-              ))}
-            </select>
-            <select className="border border-[#FDDAC0] rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#E8563D] focus:border-[#E8563D] bg-[#faf2e1] transition-all duration-300 input-consistent">
-              <option>All Difficulties</option>
-              {difficulties.slice(1).map((difficulty) => (
-                <option key={difficulty}>{difficulty}</option>
-              ))}
-            </select>
-            <input
-              type="date"
-              className="border border-[#FDDAC0] rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#E8563D] focus:border-[#E8563D] bg-[#faf2e1] transition-all duration-300 input-consistent"
-            />
-            <button className="btn-primary">Apply Filters</button>
-          </div>
-        </ScrollAnimatedSection>
+      {/* Filters Section */}
+      <section className="section-padding bg-white" id="events">
+        <div className="container-custom">
+          <ScrollAnimatedSection animation="slideUp" className="bg-[#faf2e1] rounded-2xl shadow-lg p-6 mb-12 mx-8">
+            <div className="flex items-center mb-4">
+              <Filter className="w-5 h-5 text-[#E8563D] mr-2 animate-float" />
+              <h3 className="text-lg font-semibold text-[#111C2F]">Filter Events</h3>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+              <select className="border border-[#FDDAC0] rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#E8563D] focus:border-[#E8563D] bg-[#faf2e1] transition-all duration-300 input-consistent">
+                <option>All Categories</option>
+                {categories.slice(1).map((category) => (
+                  <option key={category}>{category}</option>
+                ))}
+              </select>
+              <select className="border border-[#FDDAC0] rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#E8563D] focus:border-[#E8563D] bg-[#faf2e1] transition-all duration-300 input-consistent">
+                <option>All Difficulties</option>
+                {difficulties.slice(1).map((difficulty) => (
+                  <option key={difficulty}>{difficulty}</option>
+                ))}
+              </select>
+              <input
+                type="date"
+                className="border border-[#FDDAC0] rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#E8563D] focus:border-[#E8563D] bg-[#faf2e1] transition-all duration-300 input-consistent"
+              />
+              <button className="btn-primary">Apply Filters</button>
+            </div>
+          </ScrollAnimatedSection>
+        </div>
+      </section>
 
-        {/* Featured Events */}
-        <ScrollAnimatedSection animation="slideUp" className="mb-16">
-          <h2 className="text-4xl font-bold font-serif mb-8 text-[#1e2a4a] text-center">Featured Events</h2>
+      {/* Featured Events Section */}
+      <section className="section-padding bg-[#faf2e1]">
+        <div className="container-custom">
+          <ScrollAnimatedSection animation="slideUp" className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold font-serif mb-6 text-[#1e2a4a]">Featured Events</h2>
+          </ScrollAnimatedSection>
+
           <StaggeredScrollAnimation
             animation="scaleIn"
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 grid-equal-height"
           >
             {events
               .filter((event) => event.featured)
@@ -218,7 +212,7 @@ export default function EventsPage() {
                   className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 border border-[#FDDAC0]/30 transform hover:scale-105 card-equal-height"
                 >
                   <div className="relative h-48 flex-shrink-0">
-                    <Image src={event.image || "/placeholder.svg"} alt={event.title} fill className="object-cover" />
+                    <Image src="/placeholder.svg" alt={event.title} fill className="object-cover" />
                     <div className="absolute top-4 right-4 bg-[#e85a4f] text-white px-3 py-1 rounded-full text-sm font-semibold">
                       Featured
                     </div>
@@ -270,14 +264,19 @@ export default function EventsPage() {
                 </div>
               ))}
           </StaggeredScrollAnimation>
-        </ScrollAnimatedSection>
+        </div>
+      </section>
 
-        {/* All Events */}
-        <ScrollAnimatedSection animation="slideUp" className="mb-16">
-          <h2 className="text-4xl font-bold font-serif mb-8 text-[#1e2a4a] text-center">All Events</h2>
+      {/* All Events Section */}
+      <section className="section-padding bg-white">
+        <div className="container-custom">
+          <ScrollAnimatedSection animation="slideUp" className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold font-serif mb-6 text-[#1e2a4a]">All Events</h2>
+          </ScrollAnimatedSection>
+
           <StaggeredScrollAnimation
             animation="slideUp"
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 grid-equal-height"
           >
             {events.map((event) => (
               <div
@@ -285,7 +284,7 @@ export default function EventsPage() {
                 className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 border border-[#FDDAC0]/30 transform hover:scale-105 card-equal-height"
               >
                 <div className="relative h-48 flex-shrink-0">
-                  <Image src={event.image || "/placeholder.svg"} alt={event.title} fill className="object-cover" />
+                  <Image src="/placeholder.svg" alt={event.title} fill className="object-cover" />
                   <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-lg px-3 py-1">
                     <span className="text-[#E8563D] font-bold">{event.price}</span>
                   </div>
@@ -349,19 +348,24 @@ export default function EventsPage() {
               </div>
             ))}
           </StaggeredScrollAnimation>
-        </ScrollAnimatedSection>
+        </div>
+      </section>
 
-        {/* CTA Section */}
-        <ScrollAnimatedSection animation="scaleIn" className="bg-[#1e2a4a] text-white rounded-2xl p-12 text-center">
-          <h3 className="text-3xl font-bold mb-4">Can't Find What You're Looking For?</h3>
-          <p className="text-xl mb-8 text-white/80">
-            We offer custom SUP experiences for groups, corporate events, and special occasions.
-          </p>
-          <Link href="/contact" className="btn-primary">
-            Plan Custom Event
-          </Link>
-        </ScrollAnimatedSection>
-      </div>
-    </div>
+      {/* CTA Section */}
+      <section className="section-padding bg-[#faf2e1]">
+        <div className="container-custom">
+          <ScrollAnimatedSection animation="scaleIn" className="bg-[#1e2a4a] text-white rounded-2xl p-12 text-center">
+            <h3 className="text-3xl font-bold mb-4">Can't Find What You're Looking For?</h3>
+            <p className="text-xl mb-8 text-white/80">
+              We offer custom SUP experiences for groups, corporate events, and special occasions.
+            </p>
+            <Link href="/contact" className="btn-primary">
+              Plan Custom Event
+            </Link>
+          </ScrollAnimatedSection>
+        </div>
+      </section>
+    </>
   )
 }
+

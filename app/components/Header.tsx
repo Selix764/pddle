@@ -1,8 +1,9 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import { useState, useEffect } from "react"
-import { Menu, X, MapPin, Download, Phone, Globe, Home, User, Briefcase, Mail } from "lucide-react"
+import { Menu, X, MapPin, Download, Phone, Globe, User, Briefcase, Calendar } from "lucide-react"
 import { useLanguage } from "../contexts/LanguageContext"
 
 export default function Header() {
@@ -12,9 +13,10 @@ export default function Header() {
 
   const navigation = [
     { name: t("header.locations"), href: "/locations", icon: <MapPin className="w-5 h-5" /> },
-    { name: t("header.contact"), href: "/contact", icon: <Phone className="w-5 h-5" /> },
+    { name: "Events", href: "/events", icon: <Calendar className="w-5 h-5" /> },
     { name: t("header.about"), href: "/about", icon: <User className="w-5 h-5" /> },
     { name: t("header.business"), href: "/business", icon: <Briefcase className="w-5 h-5" /> },
+    { name: t("header.contact"), href: "/contact", icon: <Phone className="w-5 h-5" /> },
   ]
 
   useEffect(() => {
@@ -43,16 +45,22 @@ export default function Header() {
           <div className="flex items-center space-x-4">
             <Link
               href="/"
-              className={`text-[#1e2a4a] hover:text-[#e85a4f] transition-all duration-300 font-medium p-3 rounded-full transform hover:scale-105 flex items-center justify-center ${
+              className={`transition-all duration-300 px-4 py-2 rounded-full transform hover:scale-105 flex items-center justify-center ${
                 isScrolled ? "bg-white shadow-lg hover:shadow-xl" : "bg-[#faf2e1] shadow-sm hover:shadow-md"
               }`}
-              style={{ width: "3.5rem", height: "3.5rem" }}
               title="pddle Home"
             >
-              <Home className="w-5 h-5" />
+              <Image
+                src="/images/pddle-logo.svg"
+                alt="pddle"
+                width={80}
+                height={28}
+                className="object-contain"
+                priority
+              />
             </Link>
 
-            {/* Language Toggle Button - Icon Only */}
+            {/* Language Toggle Button - Desktop and Mobile */}
             <button
               onClick={toggleLanguage}
               className={`text-[#1e2a4a] hover:text-[#e85a4f] transition-all duration-300 font-medium p-3 rounded-full transform hover:scale-105 flex items-center justify-center ${
@@ -65,43 +73,35 @@ export default function Header() {
             </button>
           </div>
 
-          {/* Desktop Navigation - Centered */}
-          <div className="hidden lg:flex items-center space-x-6 absolute left-1/2 transform -translate-x-1/2">
+          {/* Desktop Navigation - Centered - Text Based */}
+          <div className="hidden lg:flex items-center space-x-4 absolute left-1/2 transform -translate-x-1/2">
             {navigation.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className={`text-[#1e2a4a] hover:text-[#e85a4f] transition-all duration-300 font-medium p-3 rounded-full transform hover:scale-105 flex items-center justify-center ${
+                className={`text-[#1e2a4a] hover:text-[#e85a4f] transition-all duration-300 font-semibold text-base px-3 py-2 rounded-full transform hover:scale-105 whitespace-nowrap ${
                   isScrolled ? "bg-white shadow-lg hover:shadow-xl" : "bg-[#faf2e1] shadow-sm hover:shadow-md"
                 }`}
-                style={{ width: "3.5rem", height: "3.5rem" }}
-                title={item.name}
               >
-                {item.icon}
+                {item.name}
               </Link>
             ))}
           </div>
 
-          {/* CTA Buttons - Icon Only */}
-          <div className="hidden lg:flex items-center space-x-4">
+          {/* CTA Buttons - Text Based */}
+          <div className="hidden lg:flex items-center space-x-3">
             <Link
               href="/locations"
-              className={`text-[#e85a4f] hover:text-[#d4472f] transition-all duration-300 font-medium p-3 rounded-full transform hover:scale-105 flex items-center justify-center ${
+              className={`text-[#e85a4f] hover:text-[#d4472f] transition-all duration-300 font-semibold px-4 py-2 rounded-full transform hover:scale-105 border-2 border-[#e85a4f] hover:border-[#d4472f] ${
                 isScrolled ? "bg-white shadow-lg hover:shadow-xl" : "bg-[#faf2e1] shadow-sm hover:shadow-md"
               }`}
-              style={{ width: "3.5rem", height: "3.5rem" }}
-              title={t("header.findLocker")}
             >
-              <MapPin className="w-5 h-5" />
+              Find Lockers
             </Link>
-            <button
-              className={`text-white bg-[#e85a4f] hover:bg-[#d4472f] transition-all duration-300 font-medium p-3 rounded-full transform hover:scale-105 flex items-center justify-center shadow-lg hover:shadow-xl ${
-                isScrolled ? "shadow-xl hover:shadow-2xl" : ""
-              }`}
-              style={{ width: "3.5rem", height: "3.5rem" }}
-              title={t("header.downloadApp")}
-            >
-              <Download className="w-5 h-5" />
+            <button className={`text-white bg-[#e85a4f] hover:bg-[#d4472f] transition-all duration-300 font-semibold px-6 py-2 rounded-full transform hover:scale-105 border border-[#e85a4f] hover:border-[#d4472f] ${
+              isScrolled ? "shadow-lg hover:shadow-xl" : "shadow-sm hover:shadow-md"
+            }`}>
+              Download App
             </button>
           </div>
 
@@ -116,67 +116,64 @@ export default function Header() {
           </button>
         </div>
 
-        {/* Mobile Navigation - Icon Only Grid */}
+        {/* Mobile Navigation - Full Screen Overlay */}
         {isMenuOpen && (
-          <div
-            className={`lg:hidden py-6 rounded-b-2xl mx-4 transition-all duration-300 ${
-              isScrolled ? "bg-white/95 backdrop-blur-md shadow-xl" : "bg-[#faf2e1]/90 backdrop-blur-sm shadow-lg"
-            }`}
-          >
-            <div className="grid grid-cols-4 gap-4 mb-6">
-              {/* Mobile Language Toggle */}
-              <button
-                onClick={toggleLanguage}
-                className={`text-[#1e2a4a] hover:text-[#e85a4f] transition-all duration-300 font-medium p-3 rounded-full transform hover:scale-105 flex items-center justify-center ${
-                  isScrolled ? "bg-[#faf2e1] shadow-md hover:shadow-lg" : "bg-white shadow-sm hover:shadow-md"
-                }`}
-                style={{ width: "3.5rem", height: "3.5rem" }}
-                title={`${t("header.switchTo")} ${language === "RO" ? t("header.english") : t("header.romanian")}`}
-              >
-                <Globe className="w-5 h-5" />
-              </button>
-
-              {navigation.map((item) => (
+          <div className="lg:hidden fixed inset-0 z-50 bg-white/95 backdrop-blur-md">
+            {/* Background with slight opacity to show hero image */}
+            <div 
+              className="absolute inset-0 bg-gradient-to-b from-[#faf2e1]/90 to-white/95"
+              onClick={() => setIsMenuOpen(false)}
+            />
+            
+            {/* Menu Content */}
+            <div className="relative z-10 flex flex-col h-full justify-center px-8">
+              {/* Navigation Links - Text Based for Mobile */}
+              <div className="space-y-4 mb-12">
+                {navigation.map((item, index) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="flex items-center space-x-4 p-4 rounded-3xl transition-all duration-500 hover:scale-105 bg-white/80 hover:bg-white shadow-lg hover:shadow-xl animate-slide-in-left"
+                    style={{ animationDelay: `${index * 100}ms` }}
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    <span className="text-[#1e2a4a] text-2xl">{item.icon}</span>
+                    <span className="font-bold text-xl text-[#1e2a4a]">{item.name}</span>
+                  </Link>
+                ))}
+              </div>
+              
+              {/* Mobile CTA Buttons */}
+              <div className="space-y-4">
                 <Link
-                  key={item.href}
-                  href={item.href}
-                  className={`text-[#1e2a4a] hover:text-[#e85a4f] transition-all duration-300 font-medium p-3 rounded-full transform hover:scale-105 flex items-center justify-center ${
-                    isScrolled ? "bg-[#faf2e1] shadow-md hover:shadow-lg" : "bg-white shadow-sm hover:shadow-md"
-                  }`}
-                  style={{ width: "3.5rem", height: "3.5rem" }}
-                  title={item.name}
+                  href="/locations"
+                  className="w-full flex items-center justify-center space-x-3 py-4 px-6 rounded-3xl font-bold text-lg transition-all duration-500 border-3 border-[#e85a4f] text-[#e85a4f] hover:text-white hover:bg-[#e85a4f] bg-white/80 hover:bg-[#e85a4f] shadow-lg hover:shadow-xl animate-slide-in-up"
+                  style={{ animationDelay: '500ms' }}
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  {item.icon}
+                  <MapPin className="w-6 h-6" />
+                  <span>{t("header.findLocker")}</span>
                 </Link>
-              ))}
-            </div>
-            
-            {/* Mobile CTA Buttons - Icon Only */}
-            <div className="flex justify-center space-x-4">
-              <Link
-                href="/locations"
-                className={`text-[#e85a4f] hover:text-[#d4472f] transition-all duration-300 font-medium p-3 rounded-full transform hover:scale-105 flex items-center justify-center ${
-                  isScrolled ? "bg-[#faf2e1] shadow-md hover:shadow-lg" : "bg-white shadow-sm hover:shadow-md"
-                }`}
-                style={{ width: "3.5rem", height: "3.5rem" }}
-                title={t("header.findLocker")}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                <MapPin className="w-5 h-5" />
-              </Link>
-              <button
-                className={`text-white bg-[#e85a4f] hover:bg-[#d4472f] transition-all duration-300 font-medium p-3 rounded-full transform hover:scale-105 flex items-center justify-center shadow-lg hover:shadow-xl`}
-                style={{ width: "3.5rem", height: "3.5rem" }}
-                title={t("header.downloadApp")}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                <Download className="w-5 h-5" />
-              </button>
+                <button
+                  className="w-full flex items-center justify-center space-x-3 py-4 px-6 rounded-3xl font-bold text-lg transition-all duration-500 text-white bg-[#e85a4f] hover:bg-[#d4472f] shadow-lg hover:shadow-xl animate-slide-in-up"
+                  style={{ animationDelay: '600ms' }}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  <Download className="w-6 h-6" />
+                  <span>{t("header.downloadApp")}</span>
+                </button>
+              </div>
+
+              {/* Close hint */}
+              <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-center">
+                <p className="text-[#1e2a4a]/60 text-sm animate-pulse">Tap anywhere to close</p>
+              </div>
             </div>
           </div>
         )}
       </nav>
+
+
     </header>
   )
 }

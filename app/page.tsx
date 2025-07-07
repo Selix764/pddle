@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { MapPin, Unlock, Waves, Shield, Clock, Smartphone, CheckCircle, ArrowRight } from "lucide-react"
+import { MapPin, Unlock, Waves, Shield, Clock, Smartphone, CheckCircle, ArrowRight, Compass, QrCode, Activity, Anchor, Zap, Route } from "lucide-react"
 import { useLanguage } from "./contexts/LanguageContext"
 import ScrollAnimatedSection from "./components/ScrollAnimatedSection"
 import StaggeredScrollAnimation from "./components/StaggeredScrollAnimation"
@@ -11,17 +11,17 @@ export default function HomePage() {
 
   const steps = [
     {
-      icon: <MapPin className="w-8 h-8 text-[#e85a4f]" />,
+      icon: <Compass className="w-8 h-8 text-white animate-spin-slow" />,
       title: t("howItWorks.step1.title"),
       description: t("howItWorks.step1.description"),
     },
     {
-      icon: <Unlock className="w-8 h-8 text-[#e85a4f]" />,
+      icon: <QrCode className="w-8 h-8 text-white animate-pulse" />,
       title: t("howItWorks.step2.title"),
       description: t("howItWorks.step2.description"),
     },
     {
-      icon: <Waves className="w-8 h-8 text-[#e85a4f]" />,
+      icon: <Activity className="w-8 h-8 text-white animate-bounce" />,
       title: t("howItWorks.step3.title"),
       description: t("howItWorks.step3.description"),
     },
