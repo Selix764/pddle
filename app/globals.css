@@ -11,10 +11,41 @@
     font-family: var(--font-inter);
     background-color: #faf2e1;
     color: #1e2a4a;
+    /* Ensure mobile viewport is handled properly */
+    min-height: 100dvh;
+    position: relative;
   }
 
   .font-serif {
     font-family: var(--font-playfair);
+  }
+
+  /* Mobile viewport fix for better handling of dynamic viewport heights */
+  @supports (height: 100dvh) {
+    .h-screen {
+      height: 100dvh;
+    }
+  }
+
+  /* Fallback for browsers that don't support dvh */
+  @supports not (height: 100dvh) {
+    .h-screen {
+      height: 100vh;
+      min-height: 100vh;
+    }
+  }
+
+  /* Ensure mobile browsers don't crop content */
+  @media (max-width: 768px) {
+    html, body {
+      overflow-x: hidden;
+      position: relative;
+    }
+    
+    /* Prevent iOS Safari bottom bar from causing issues */
+    body {
+      padding-bottom: env(safe-area-inset-bottom);
+    }
   }
 }
 

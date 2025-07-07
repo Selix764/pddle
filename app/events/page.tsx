@@ -115,7 +115,7 @@ export default function EventsPage() {
   return (
     <>
       {/* Hero Section - Full Screen */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden -mt-20 pt-20">
+      <section className="relative h-screen min-h-[100dvh] flex items-center justify-center overflow-hidden -mt-20 pt-20">
         <div className="absolute inset-0 z-0">
           <div
             className="w-full h-full bg-cover bg-center bg-no-repeat animate-ken-burns"

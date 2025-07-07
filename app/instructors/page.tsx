@@ -137,7 +137,7 @@ export default function InstructorsPage() {
   return (
     <div className="min-h-screen bg-[#faf2e1]">
       {/* Hero Section */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden -mt-20 pt-20">
+      <section className="relative h-screen min-h-[100dvh] flex items-center justify-center overflow-hidden -mt-20 pt-20">
         <div className="absolute inset-0 z-0">
           <div
             className="w-full h-full bg-cover bg-center bg-no-repeat animate-ken-burns"
