@@ -2,7 +2,7 @@
 
 import Image from "next/image"
 import Link from "next/link"
-import { Heart, Users, Waves, Shield, Globe } from "lucide-react"
+import { Heart, Users, Waves, Shield, Globe, CheckCircle, Calendar, Award, Target, MapPin, Clock } from "lucide-react"
 import { useLanguage } from "../contexts/LanguageContext"
 import ScrollAnimatedSection from "../components/ScrollAnimatedSection"
 import StaggeredScrollAnimation from "../components/StaggeredScrollAnimation"
@@ -109,48 +109,48 @@ export default function AboutPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-[#faf2e1]">
-      {/* Hero Section */}
+    <>
+      {/* Hero Section - Full Screen */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden -mt-20 pt-20">
+        {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <div
             className="w-full h-full bg-cover bg-center bg-no-repeat animate-ken-burns"
             style={{
-              backgroundImage: "url('/placeholder.svg?height=1080&width=1920&text=About+Us+Hero')",
+              backgroundImage: "url('/images/about-hero-new.jpg')",
             }}
           />
-          <div className="absolute inset-0 bg-black/40"></div>
+          <div className="absolute inset-0 bg-black/30"></div>
         </div>
 
+        {/* Content Overlay */}
         <div className="relative z-10 container-custom">
           <div className="flex items-center justify-center h-full text-center">
+            {/* Centered Content */}
             <div className="text-white max-w-6xl w-full animate-fade-in-up">
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight animate-slide-in-left">
-                Our <span className="text-[#e85a4f] animate-glow">Story</span>
+                {t("about.hero.title")} <span className="text-[#e85a4f]">pddle</span>
               </h1>
               <p className="text-xl md:text-2xl mb-12 leading-relaxed mx-auto max-w-3xl text-white/90 animate-slide-in-right animation-delay-300">
-                Born from a passion for water sports and a vision to make SUP accessible to everyone, pddle is
-                revolutionizing how people experience paddleboarding.
+                {t("about.hero.subtitle")}
               </p>
 
+              {/* CTA Buttons - Consistent Heights */}
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in-up animation-delay-600">
-                <Link
-                  href="#story"
-                  className="btn-primary animate-pulse-glow"
-                >
-                  Our Journey
-                </Link>
-                <Link
-                  href="#team"
-                  className="btn-secondary hover:animate-shake"
-                >
-                  Meet the Team
-                </Link>
+                <button className="btn-primary animate-pulse-glow">
+                  <MapPin className="w-5 h-5 mr-2" />
+                  {t("about.hero.ourJourney")}
+                </button>
+                <button className="btn-secondary hover:animate-shake">
+                  <Users className="w-5 h-5 mr-2" />
+                  {t("about.hero.meetTeam")}
+                </button>
               </div>
             </div>
           </div>
         </div>
 
+        {/* Scroll Indicator */}
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white/70 animate-bounce">
           <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center animate-pulse">
             <div className="w-1 h-3 bg-white/50 rounded-full mt-2 animate-bounce animation-delay-500"></div>
@@ -158,153 +158,310 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Our Story */}
-      <div className="container-custom py-12 scroll-mt-24" id="story">
-        <ScrollAnimatedSection animation="slideUp" className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold font-serif mb-6 text-[#1e2a4a]">Our Story</h2>
-          <div className="max-w-4xl mx-auto">
-            <p className="text-xl text-[#1e2a4a]/70 mb-8 leading-relaxed">
-              pddle was born from a simple belief: everyone should have easy access to the transformative experience of
-              paddleboarding. What started as a weekend passion project has grown into a mission to revolutionize water
-              sports accessibility.
-            </p>
-            <p className="text-lg text-[#1e2a4a]/70 leading-relaxed">
-              Our founder, Alex Rivera, discovered SUP during a challenging time in his corporate career. The peace and
-              clarity he found on the water inspired him to share this experience with others. Frustrated by the hassles
-              of traditional rental shops - limited hours, long lines, and inconvenient locations - Alex envisioned a
-              better way.
-            </p>
-          </div>
-        </ScrollAnimatedSection>
-
-        {/* Stats */}
-        <StaggeredScrollAnimation animation="slideUp" className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
-          {stats.map((stat, index) => (
-            <div key={index} className="text-center">
-              <div className="bg-white rounded-2xl shadow-lg p-8 stats-card">
-                <div className="text-4xl font-bold text-[#e85a4f] mb-2 animate-number-count">{stat.number}</div>
-                <div className="text-[#111C2F]/70 font-semibold">{stat.label}</div>
-              </div>
+      {/* Our Story Section */}
+      <section className="section-padding bg-white">
+        <div className="container-custom">
+          <ScrollAnimatedSection animation="slideUp" className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold font-serif mb-6 text-[#1e2a4a]">{t("about.story.title")}</h2>
+            <div className="prose prose-lg max-w-4xl mx-auto text-gray-700 leading-relaxed">
+              <p className="text-xl mb-6">
+                {t("about.story.intro")}
+              </p>
+              <p className="text-lg">
+                {t("about.story.founder")}
+              </p>
             </div>
-          ))}
-        </StaggeredScrollAnimation>
+          </ScrollAnimatedSection>
+        </div>
+      </section>
 
-        {/* Values */}
-        <ScrollAnimatedSection animation="slideUp" className="mb-16">
-          <h3 className="text-3xl font-bold text-[#1e2a4a] text-center mb-12">Our Values</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 grid-equal-height">
-            {values.map((value, index) => (
-              <div
-                key={index}
-                className="card-equal-height bg-white rounded-2xl shadow-lg p-8 hover:shadow-xl transition-all duration-300"
-              >
-                <div className="card-content">
-                  <div>
-                    <div className="bg-[#e85a4f] rounded-2xl w-16 h-16 flex items-center justify-center mb-6 text-white">
-                      {value.icon}
-                    </div>
-                    <h4 className="text-2xl font-bold text-[#111C2F] mb-4 text-title-consistent">{value.title}</h4>
-                  </div>
-                  <p className="text-[#111C2F]/70 leading-relaxed text-body-consistent">{value.description}</p>
+      {/* Values Section */}
+      <section className="section-padding bg-[#faf2e1]">
+        <div className="container-custom">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-[#1e2a4a] mb-4">
+              {t("about.values.title")}
+            </h2>
+          </div>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="card-equal-height bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow text-center">
+              <div className="flex justify-center mb-6">
+                <div className="w-16 h-16 bg-[#e85a4f] rounded-full flex items-center justify-center">
+                  <Target className="w-8 h-8 text-white" />
                 </div>
               </div>
-            ))}
-          </div>
-        </ScrollAnimatedSection>
+              <h3 className="text-xl font-bold text-[#1e2a4a] mb-4">
+                {t("about.values.passion.title")}
+              </h3>
+              <p className="text-gray-600">
+                {t("about.values.passion.description")}
+              </p>
+            </div>
 
-        {/* Timeline */}
-        <ScrollAnimatedSection animation="slideUp" className="mb-16">
-          <h3 className="text-3xl font-bold text-[#1e2a4a] text-center mb-12">Our Journey</h3>
+            <div className="card-equal-height bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow text-center">
+              <div className="flex justify-center mb-6">
+                <div className="w-16 h-16 bg-[#e85a4f] rounded-full flex items-center justify-center">
+                  <CheckCircle className="w-8 h-8 text-white" />
+                </div>
+              </div>
+              <h3 className="text-xl font-bold text-[#1e2a4a] mb-4">
+                {t("about.values.safety.title")}
+              </h3>
+              <p className="text-gray-600">
+                {t("about.values.safety.description")}
+              </p>
+            </div>
+
+            <div className="card-equal-height bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow text-center">
+              <div className="flex justify-center mb-6">
+                <div className="w-16 h-16 bg-[#e85a4f] rounded-full flex items-center justify-center">
+                  <Users className="w-8 h-8 text-white" />
+                </div>
+              </div>
+              <h3 className="text-xl font-bold text-[#1e2a4a] mb-4">
+                {t("about.values.community.title")}
+              </h3>
+              <p className="text-gray-600">
+                {t("about.values.community.description")}
+              </p>
+            </div>
+
+            <div className="card-equal-height bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow text-center">
+              <div className="flex justify-center mb-6">
+                <div className="w-16 h-16 bg-[#e85a4f] rounded-full flex items-center justify-center">
+                  <Award className="w-8 h-8 text-white" />
+                </div>
+              </div>
+              <h3 className="text-xl font-bold text-[#1e2a4a] mb-4">
+                {t("about.values.environment.title")}
+              </h3>
+              <p className="text-gray-600">
+                {t("about.values.environment.description")}
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Team Section */}
+      <section className="section-padding bg-white">
+        <div className="container-custom">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-[#1e2a4a] mb-4">
+              {t("about.team.title")}
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              {t("about.team.subtitle")}
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="card-equal-height bg-[#faf2e1] p-6 rounded-lg shadow-lg text-center">
+              <div className="w-24 h-24 bg-gray-300 rounded-full mx-auto mb-4"></div>
+              <h3 className="text-xl font-bold text-[#1e2a4a] mb-2">
+                {t("about.team.alex.name")}
+              </h3>
+              <p className="text-[#e85a4f] font-medium mb-3">
+                {t("about.team.alex.role")}
+              </p>
+              <p className="text-gray-600 text-sm mb-3">
+                {t("about.team.alex.bio")}
+              </p>
+              <p className="text-xs text-gray-500">
+                {t("about.team.alex.experience")}
+              </p>
+            </div>
+
+            <div className="card-equal-height bg-[#faf2e1] p-6 rounded-lg shadow-lg text-center">
+              <div className="w-24 h-24 bg-gray-300 rounded-full mx-auto mb-4"></div>
+              <h3 className="text-xl font-bold text-[#1e2a4a] mb-2">
+                {t("about.team.maria.name")}
+              </h3>
+              <p className="text-[#e85a4f] font-medium mb-3">
+                {t("about.team.maria.role")}
+              </p>
+              <p className="text-gray-600 text-sm mb-3">
+                {t("about.team.maria.bio")}
+              </p>
+              <p className="text-xs text-gray-500">
+                {t("about.team.maria.experience")}
+              </p>
+            </div>
+
+            <div className="card-equal-height bg-[#faf2e1] p-6 rounded-lg shadow-lg text-center">
+              <div className="w-24 h-24 bg-gray-300 rounded-full mx-auto mb-4"></div>
+              <h3 className="text-xl font-bold text-[#1e2a4a] mb-2">
+                {t("about.team.david.name")}
+              </h3>
+              <p className="text-[#e85a4f] font-medium mb-3">
+                {t("about.team.david.role")}
+              </p>
+              <p className="text-gray-600 text-sm mb-3">
+                {t("about.team.david.bio")}
+              </p>
+              <p className="text-xs text-gray-500">
+                {t("about.team.david.experience")}
+              </p>
+            </div>
+
+            <div className="card-equal-height bg-[#faf2e1] p-6 rounded-lg shadow-lg text-center">
+              <div className="w-24 h-24 bg-gray-300 rounded-full mx-auto mb-4"></div>
+              <h3 className="text-xl font-bold text-[#1e2a4a] mb-2">
+                {t("about.team.sarah.name")}
+              </h3>
+              <p className="text-[#e85a4f] font-medium mb-3">
+                {t("about.team.sarah.role")}
+              </p>
+              <p className="text-gray-600 text-sm mb-3">
+                {t("about.team.sarah.bio")}
+              </p>
+              <p className="text-xs text-gray-500">
+                {t("about.team.sarah.experience")}
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Timeline Section */}
+      <section className="section-padding bg-[#faf2e1]">
+        <div className="container-custom">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-[#1e2a4a] mb-4">
+              {t("about.timeline.title")}
+            </h2>
+          </div>
+          
           <div className="max-w-4xl mx-auto">
             <div className="relative">
-              {/* Timeline line */}
-              <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-[#e85a4f]/20"></div>
-
-              {milestones.map((milestone, index) => (
-                <div
-                  key={index}
-                  className={`flex items-center mb-12 ${index % 2 === 0 ? "flex-row" : "flex-row-reverse"}`}
-                >
-                  <div className={`w-1/2 ${index % 2 === 0 ? "pr-8 text-right" : "pl-8 text-left"}`}>
-                    <div className="bg-white rounded-2xl shadow-lg p-6">
-                      <div className="text-2xl font-bold text-[#e85a4f] mb-2">{milestone.year}</div>
-                      <h4 className="text-xl font-bold text-[#111C2F] mb-2">{milestone.title}</h4>
-                      <p className="text-[#111C2F]/70">{milestone.description}</p>
-                    </div>
+              <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-[#e85a4f]"></div>
+              
+              <div className="space-y-8">
+                <div className="flex items-start gap-6">
+                  <div className="w-8 h-8 bg-[#e85a4f] rounded-full flex items-center justify-center text-white font-bold text-sm">
+                    19
                   </div>
-                  <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-[#e85a4f] rounded-full border-4 border-white shadow-lg"></div>
-                  <div className="w-1/2"></div>
+                  <div>
+                    <h3 className="text-xl font-bold text-[#1e2a4a] mb-2">
+                      {t("about.timeline.2019.title")}
+                    </h3>
+                    <p className="text-gray-600">
+                      {t("about.timeline.2019.description")}
+                    </p>
+                  </div>
                 </div>
-              ))}
-            </div>
-          </div>
-        </ScrollAnimatedSection>
 
-        {/* Team */}
-        <div className="scroll-mt-24" id="team">
-          <ScrollAnimatedSection animation="slideUp" className="text-center mb-16">
-            <h3 className="text-3xl font-bold text-[#1e2a4a] mb-6">Meet Our Team</h3>
-            <p className="text-xl text-[#1e2a4a]/70 max-w-3xl mx-auto">
-              Our diverse team brings together expertise in technology, marine biology, operations, and water sports
-              instruction to create the best SUP experience possible.
-            </p>
-          </ScrollAnimatedSection>
-
-          <StaggeredScrollAnimation animation="slideUp" className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16 grid-equal-height">
-            {team.map((member, index) => (
-              <div
-                key={index}
-                className="card-equal-height bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300"
-              >
-                <div className="md:flex h-full">
-                  <div className="md:w-1/3 relative h-64 md:h-auto">
-                    <Image src={member.image || "/placeholder.svg"} alt={member.name} fill className="object-cover" />
+                <div className="flex items-start gap-6">
+                  <div className="w-8 h-8 bg-[#e85a4f] rounded-full flex items-center justify-center text-white font-bold text-sm">
+                    20
                   </div>
-                  <div className="md:w-2/3 p-8 card-content">
-                    <div>
-                      <h4 className="text-2xl font-bold text-[#111C2F] mb-2 text-title-consistent">{member.name}</h4>
-                      <p className="text-[#e85a4f] font-semibold mb-4 text-title-consistent">{member.role}</p>
-                      <p className="text-[#111C2F]/70 mb-4 leading-relaxed text-body-consistent">{member.bio}</p>
-                    </div>
-                    <p className="text-sm text-[#111C2F]/60 font-medium">{member.experience}</p>
+                  <div>
+                    <h3 className="text-xl font-bold text-[#1e2a4a] mb-2">
+                      {t("about.timeline.2020.title")}
+                    </h3>
+                    <p className="text-gray-600">
+                      {t("about.timeline.2020.description")}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-6">
+                  <div className="w-8 h-8 bg-[#e85a4f] rounded-full flex items-center justify-center text-white font-bold text-sm">
+                    21
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-[#1e2a4a] mb-2">
+                      {t("about.timeline.2021.title")}
+                    </h3>
+                    <p className="text-gray-600">
+                      {t("about.timeline.2021.description")}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-6">
+                  <div className="w-8 h-8 bg-[#e85a4f] rounded-full flex items-center justify-center text-white font-bold text-sm">
+                    22
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-[#1e2a4a] mb-2">
+                      {t("about.timeline.2022.title")}
+                    </h3>
+                    <p className="text-gray-600">
+                      {t("about.timeline.2022.description")}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-6">
+                  <div className="w-8 h-8 bg-[#e85a4f] rounded-full flex items-center justify-center text-white font-bold text-sm">
+                    23
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-[#1e2a4a] mb-2">
+                      {t("about.timeline.2023.title")}
+                    </h3>
+                    <p className="text-gray-600">
+                      {t("about.timeline.2023.description")}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-6">
+                  <div className="w-8 h-8 bg-[#e85a4f] rounded-full flex items-center justify-center text-white font-bold text-sm">
+                    24
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-[#1e2a4a] mb-2">
+                      {t("about.timeline.2024.title")}
+                    </h3>
+                    <p className="text-gray-600">
+                      {t("about.timeline.2024.description")}
+                    </p>
                   </div>
                 </div>
               </div>
-            ))}
-          </StaggeredScrollAnimation>
+            </div>
+          </div>
         </div>
+      </section>
 
-        {/* Mission Statement */}
-        <ScrollAnimatedSection
-          animation="scaleIn"
-          className="bg-[#1e2a4a] text-white rounded-2xl p-12 text-center mb-16"
-        >
-          <Waves className="w-16 h-16 text-[#e85a4f] mx-auto mb-6 animate-float" />
-          <h3 className="text-3xl font-bold mb-6">Our Mission</h3>
-          <p className="text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">
-            To make paddleboarding accessible, safe, and enjoyable for everyone while fostering a community that
-            respects and protects our precious water environments. We believe that time on the water should be
-            effortless, inspiring, and transformative.
-          </p>
-        </ScrollAnimatedSection>
+      {/* Mission Section */}
+      <section className="section-padding bg-white">
+        <div className="container-custom">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-4xl font-bold text-[#1e2a4a] mb-8">
+              {t("about.mission.title")}
+            </h2>
+            <p className="text-xl text-gray-600 leading-relaxed">
+              {t("about.mission.description")}
+            </p>
+          </div>
+        </div>
+      </section>
 
-        {/* CTA Section */}
-        <ScrollAnimatedSection animation="slideUp" className="text-center">
-          <h3 className="text-3xl font-bold text-[#1e2a4a] mb-6">Join Our Story</h3>
-          <p className="text-xl text-[#1e2a4a]/70 mb-8 max-w-2xl mx-auto">
-            Whether you're a first-time paddler or a seasoned pro, we invite you to be part of the pddle community and
-            discover your own water story.
+      {/* CTA Section */}
+      <section className="section-padding bg-[#1e2a4a] text-white">
+        <div className="container-custom text-center">
+          <h2 className="text-4xl font-bold mb-6">
+            {t("about.cta.title")}
+          </h2>
+          <p className="text-xl mb-8 max-w-3xl mx-auto">
+            {t("about.cta.subtitle")}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/locations" className="btn-primary animate-pulse-glow">
-              Find a Location
-            </Link>
-            <Link href="/events" className="btn-secondary hover:animate-wiggle">
-              Book an Experience
-            </Link>
+            <button className="btn-primary flex items-center justify-center gap-2">
+              <MapPin className="w-5 h-5" />
+              {t("about.cta.findLocation")}
+            </button>
+            <button className="btn-secondary flex items-center justify-center gap-2">
+              <Calendar className="w-5 h-5" />
+              {t("about.cta.bookExperience")}
+            </button>
           </div>
-        </ScrollAnimatedSection>
-      </div>
-    </div>
+        </div>
+      </section>
+    </>
   )
 }

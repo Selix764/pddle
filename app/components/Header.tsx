@@ -13,8 +13,8 @@ export default function Header() {
   const navigation = [
     { name: t("header.locations"), href: "/locations", icon: <MapPin className="w-5 h-5" /> },
     { name: t("header.contact"), href: "/contact", icon: <Phone className="w-5 h-5" /> },
-    { name: "About", href: "/about", icon: <User className="w-5 h-5" /> },
-    { name: "Business", href: "/business", icon: <Briefcase className="w-5 h-5" /> },
+    { name: t("header.about"), href: "/about", icon: <User className="w-5 h-5" /> },
+    { name: t("header.business"), href: "/business", icon: <Briefcase className="w-5 h-5" /> },
   ]
 
   useEffect(() => {
