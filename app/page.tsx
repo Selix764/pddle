@@ -280,7 +280,7 @@ export default function HomePage() {
                   <div>
                     {card.isPopular && (
                       <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-[#1e2a4a] text-white px-4 py-1 rounded-full text-sm font-semibold">
-                        Most Popular
+                        {t("pricing.mostPopular")}
                       </div>
                     )}
                     <h3 className={`text-xl font-bold mb-4 text-title-consistent ${card.isPopular ? "text-white" : "text-[#1e2a4a]"}`}>

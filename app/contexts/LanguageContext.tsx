@@ -86,6 +86,7 @@ const translations = {
     "pricing.features.save20": "Economisești 20 lei",
     "pricing.features.save80": "Economisești 80 lei",
     "pricing.startAdventure": "Începe Aventura",
+    "pricing.mostPopular": "Cel Mai Popular",
 
     // CTA Section
     "cta.title": "Gata să Vâslești?",
@@ -295,6 +296,25 @@ const translations = {
     "business.cta.subtitle": "Să discutăm cum pddle poate transforma experiența clienților tăi și să genereze noi oportunități de venituri pentru afacerea ta.",
     "business.cta.contact": "Contactează-ne",
     "business.cta.schedule": "Programează o Întâlnire",
+
+    // Business Package Features
+    "business.features.5to10boards": "5-10 plăci SUP",
+    "business.features.15to25boards": "15-25 plăci SUP",
+    "business.features.50plusboards": "50+ plăci SUP",
+    "business.features.basicTraining": "Formare de bază",
+    "business.features.advancedTraining": "Formare avansată",
+    "business.features.completeTraining": "Program complet de formare",
+    "business.features.monthlyMaintenance": "Mentenanță lunară",
+    "business.features.weeklyMaintenance": "Mentenanță săptămânală",
+    "business.features.dailyMaintenance": "Mentenanță zilnică",
+    "business.features.customerSupport": "Suport clienți",
+    "business.features.prioritySupport": "Suport prioritar",
+    "business.features.247support": "Suport 24/7",
+    "business.features.marketingMaterials": "Materiale de marketing",
+    "business.features.customBranding": "Branding personalizat",
+    "business.features.dedicatedAccount": "Manager de cont dedicat",
+    
+
   },
   EN: {
     // Header
@@ -366,6 +386,7 @@ const translations = {
     "pricing.features.save20": "Save $20",
     "pricing.features.save80": "Save $80",
     "pricing.startAdventure": "Start Your Adventure",
+    "pricing.mostPopular": "Most Popular",
 
     // CTA Section
     "cta.title": "Ready to Paddle?",
@@ -574,6 +595,44 @@ const translations = {
     "business.cta.subtitle": "Let's discuss how pddle can transform your customer experience and generate new revenue opportunities for your business.",
     "business.cta.contact": "Contact Us",
     "business.cta.schedule": "Schedule a Meeting",
+
+    // Business Package Features
+    "business.features.5to10boards": "5-10 SUP boards",
+    "business.features.15to25boards": "15-25 SUP boards",
+    "business.features.50plusboards": "50+ SUP boards",
+    "business.features.basicTraining": "Basic training",
+    "business.features.advancedTraining": "Advanced training",
+    "business.features.completeTraining": "Complete training program",
+    "business.features.monthlyMaintenance": "Monthly maintenance",
+    "business.features.weeklyMaintenance": "Weekly maintenance",
+    "business.features.dailyMaintenance": "Daily maintenance",
+    "business.features.customerSupport": "Customer support",
+    "business.features.prioritySupport": "Priority support",
+    "business.features.247support": "24/7 support",
+    "business.features.marketingMaterials": "Marketing materials",
+    "business.features.customBranding": "Custom branding",
+    "business.features.dedicatedAccount": "Dedicated account manager",
+    
+    // Business Page Additional Translations
+    "business.packages.subtitle": "Choose the perfect package that fits your business needs",
+    "business.mostPopular": "Most Popular",
+    "business.learnMore": "Learn More",
+
+    // Business Solutions Features
+    "business.corporate.features.customActivities": "Customized group activities",
+    "business.corporate.features.facilitation": "Professional facilitation",
+    "business.corporate.features.challenges": "Team challenges",
+    "business.corporate.features.catering": "Catering options",
+
+    "business.hotel.features.guestPrograms": "Guest activity programs",
+    "business.hotel.features.equipmentManagement": "Equipment management",
+    "business.hotel.features.certifiedInstructors": "Certified instructors",
+    "business.hotel.features.liabilityCoverage": "Liability coverage",
+
+    "business.events.features.bachelorParties": "Bachelor/bachelorette parties",
+    "business.events.features.weddingActivities": "Wedding activities",
+    "business.events.features.privateEvents": "Private group events",
+    "business.events.features.photography": "Photography services",
   },
 }
 

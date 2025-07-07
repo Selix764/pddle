@@ -12,27 +12,27 @@ export default function BusinessPage() {
 
   const businessSolutions = [
     {
-      title: "Corporate Team Building",
-      description: "Strengthen team bonds with guided SUP adventures designed for corporate groups.",
+      title: t("business.corporate.title"),
+      description: t("business.corporate.description"),
       icon: <Users className="w-8 h-8" />,
-      features: ["Customized group activities", "Professional facilitation", "Team challenges", "Catering options"],
-      pricing: "Starting at $45/person",
+      features: [t("business.corporate.features.customActivities"), t("business.corporate.features.facilitation"), t("business.corporate.features.challenges"), t("business.corporate.features.catering")],
+      pricing: t("business.corporate.pricing"),
       image: "/placeholder.svg?height=300&width=400&text=Corporate+Team+Building",
     },
     {
-      title: "Hotel & Resort Partnerships",
-      description: "Enhance your guest experience with premium SUP rental services and guided tours.",
+      title: t("business.hotel.title"),
+      description: t("business.hotel.description"),
       icon: <Building2 className="w-8 h-8" />,
-      features: ["Guest activity programs", "Equipment management", "Certified instructors", "Liability coverage"],
-      pricing: "Custom partnership rates",
+      features: [t("business.hotel.features.guestPrograms"), t("business.hotel.features.equipmentManagement"), t("business.hotel.features.certifiedInstructors"), t("business.hotel.features.liabilityCoverage")],
+      pricing: t("business.hotel.pricing"),
       image: "/placeholder.svg?height=300&width=400&text=Hotel+Resort+Partnership",
     },
     {
-      title: "Event & Wedding Services",
-      description: "Create unforgettable memories with SUP experiences for special occasions.",
+      title: t("business.events.title"),
+      description: t("business.events.description"),
       icon: <Award className="w-8 h-8" />,
-      features: ["Bachelor/bachelorette parties", "Wedding activities", "Private group events", "Photography services"],
-      pricing: "Starting at $65/person",
+      features: [t("business.events.features.bachelorParties"), t("business.events.features.weddingActivities"), t("business.events.features.privateEvents"), t("business.events.features.photography")],
+      pricing: t("business.events.pricing"),
       image: "/placeholder.svg?height=300&width=400&text=Event+Wedding+Services",
     },
   ]
@@ -91,19 +91,19 @@ export default function BusinessPage() {
     {
       title: t("business.packages.starter.title"),
       description: t("business.packages.starter.description"),
-      features: ["5-10 SUP boards", "Basic training", "Monthly maintenance", "Customer support"],
+      features: [t("business.features.5to10boards"), t("business.features.basicTraining"), t("business.features.monthlyMaintenance"), t("business.features.customerSupport")],
       highlight: false,
     },
     {
       title: t("business.packages.professional.title"),
       description: t("business.packages.professional.description"),
-      features: ["15-25 SUP boards", "Advanced training", "Weekly maintenance", "Priority support", "Marketing materials"],
+      features: [t("business.features.15to25boards"), t("business.features.advancedTraining"), t("business.features.weeklyMaintenance"), t("business.features.prioritySupport"), t("business.features.marketingMaterials")],
       highlight: true,
     },
     {
       title: t("business.packages.enterprise.title"),
       description: t("business.packages.enterprise.description"),
-      features: ["50+ SUP boards", "Complete training program", "Daily maintenance", "24/7 support", "Custom branding", "Dedicated account manager"],
+      features: [t("business.features.50plusboards"), t("business.features.completeTraining"), t("business.features.dailyMaintenance"), t("business.features.247support"), t("business.features.customBranding"), t("business.features.dedicatedAccount")],
       highlight: false,
     }
   ]
@@ -162,10 +162,9 @@ export default function BusinessPage() {
       <section className="section-padding bg-[#faf2e1]" id="solutions">
         <div className="container-custom">
           <ScrollAnimatedSection animation="slideUp" className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold font-serif mb-6 text-[#1e2a4a]">Business Solutions</h2>
+            <h2 className="text-4xl md:text-5xl font-bold font-serif mb-6 text-[#1e2a4a]">{t("business.solutions.title")}</h2>
             <p className="text-xl text-[#1e2a4a]/70 max-w-3xl mx-auto">
-              Whether you're a hotel, resort, corporate event planner, or business owner, we have the perfect SUP solution
-              to enhance your offerings.
+              {t("business.solutions.subtitle")}
             </p>
           </ScrollAnimatedSection>
 
@@ -202,7 +201,7 @@ export default function BusinessPage() {
                   </div>
 
                   <Link href="/contact" className="w-full btn-primary text-center mt-auto">
-                    Learn More
+                    {t("business.learnMore")}
                   </Link>
                 </div>
               </div>
@@ -215,7 +214,7 @@ export default function BusinessPage() {
       <section className="section-padding bg-white">
         <div className="container-custom">
           <ScrollAnimatedSection animation="slideUp" className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold font-serif mb-6 text-[#1e2a4a]">Why Partner with pddle?</h2>
+            <h2 className="text-4xl md:text-5xl font-bold font-serif mb-6 text-[#1e2a4a]">{t("business.benefits.title")}</h2>
           </ScrollAnimatedSection>
           
           <StaggeredScrollAnimation animation="slideUp" className="grid grid-cols-1 md:grid-cols-2 gap-8 card-compact-height">
@@ -240,8 +239,8 @@ export default function BusinessPage() {
       <section className="section-padding bg-[#faf2e1]">
         <div className="container-custom">
           <ScrollAnimatedSection animation="slideUp" className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold font-serif mb-6 text-[#1e2a4a]">Partnership Packages</h2>
-            <p className="text-xl text-[#1e2a4a]/70 max-w-2xl mx-auto">Choose the perfect package that fits your business needs</p>
+            <h2 className="text-4xl md:text-5xl font-bold font-serif mb-6 text-[#1e2a4a]">{t("business.packages.title")}</h2>
+            <p className="text-xl text-[#1e2a4a]/70 max-w-2xl mx-auto">{t("business.packages.subtitle")}</p>
           </ScrollAnimatedSection>
 
           <StaggeredScrollAnimation animation="slideUp" className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto grid-equal-height">
@@ -258,7 +257,7 @@ export default function BusinessPage() {
                   <div>
                     {pkg.highlight && (
                       <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-[#1e2a4a] text-white px-4 py-1 rounded-full text-sm font-semibold">
-                        Most Popular
+                        {t("business.mostPopular")}
                       </div>
                     )}
                     <h3 className={`text-xl font-bold mb-4 text-title-consistent ${pkg.highlight ? "text-white" : "text-[#1e2a4a]"}`}>
